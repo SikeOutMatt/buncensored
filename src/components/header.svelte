@@ -1,30 +1,38 @@
 
 <script>
-
+import Logo from '../lib/assets/logo.webp';
+import accountIcon from '../lib/assets/user.png';
 
 
 </script>
 
 <main>
     <div class="grid">
-        <div>
-            <h1> LOGO 
-                <img src="" alt="">
+        <div class="flex">
+            <h1> 
+               <a href="/"> <img class="logo" src={Logo} alt="Buncensored Logo" height="100px" width="200px"></a> 
             </h1>
         </div>
-       <div >
+       <div class="flex">
         <nav>
-            <ul class="centerNav">
-                <li> <a href="/"> Home </a> </li>
-                <li> Messages </li>
-                <li> Content </li>
+            <ul>
+                <li class="centerNav"> <a href="/"> Home </a> </li>
+                <li class="centerNav"> Messages </li>
+                <li class="centerNav"> Content </li>
             </ul>
         </nav>
         </div>
-        <div>
+        <div class="flex">
             <div class="account">
+                <div class="flex"> 
+                   <a href="/account"> <img  src={accountIcon} height="30px" width="30px"> </a>
+                    <li><a href="/account"> Account </a> </li>
+                </div>
+
+
+
                 <ul>
-                    <li> <a href="/account"> Account </a> </li>
+                    
                 </ul>
             </div>
        
@@ -35,20 +43,21 @@
 
 <style>
     main {
-        background-color: gray;
         margin: 0px;
-        padding: 5px;
+        padding: 0px;
     }
 
 
 ul {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    align-items: flex-end;
     text-decoration: none;
     list-style: none;
     margin-bottom: 20px;
     margin-top: 20px;
 }
+
 
 li {
     padding-left: 30px;
@@ -73,6 +82,15 @@ li {
     grid-template-columns: 1fr 2fr 1fr ;
 }
 
+.logo {
+    padding-left: 50px;
+
+}
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
 
 
 </style>

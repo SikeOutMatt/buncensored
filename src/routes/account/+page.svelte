@@ -1,9 +1,10 @@
 <script>
     import Header from '../../components/header.svelte';
+    import profilePicture from '../../lib/assets/profilepicture.jpeg';
     /** @type {import('./$types').PageData} */
     export let data;
     let username = "Matt";
-    let subPageType = ""
+    let subPageType = "Account Info"
 
 
     // Fake Data //
@@ -22,36 +23,69 @@
     onMount(() => {
         let accountBtn = document.getElementById('accountBtn');
         let account = document.getElementById('account');
-        let subscriptionBtn = document.getElementById('subscriptionBtn')
-        let subscription = document.getElementById('subscriptions')
+        let subscriptionBtn = document.getElementById('subscriptionBtn');
+        let subscription = document.getElementById('subscriptions');
+        let userOrderBtn = document.getElementById('userOrderBtn');
+        let orders = document.getElementById('orders');
+        let paymentBtn = document.getElementById('paymentBtn');
+        let payment = document.getElementById('payment');
+
 
         accountBtn.addEventListener('click', () => {
-            if (account.style.display === 'none' && subscription.style.display ==="none") {
-                account.style.display = 'grid';
-                return subPageType = "Your Account"
-            } else if (account.style.display === "none" && subscription.style.display === "block") {
-                subscription.style.display = "none"
-                account.style.display = 'grid';
-                return subPageType = "Your Account";
+            if (account.style.display === "none") {
+                subscription.style.display = "none";
+                orders.style.display = "none";
+                payment.style.display = "none";
+                account.style.display = "block";
+                return subPageType = "Account Info"
             } else {
-                account.style.display = "none"
-                return subPageType = "";
+                account.style.display = "block";
+                return subPageType = "Account Info";
             }
         });
 
         subscriptionBtn.addEventListener('click', () => {
-            if (subscription.style.display === "none" && account.style.display === "none") {
-                subscription.style.display = 'block';
+            if (subscription.style.display === "none") {
+                account.style.display = "none";
+                orders.style.display = "none";
+                payment.style.display = "none";
+                subscription.style.display = "block";
                 return subPageType = "Your Subscriptions"
-            } else if (subscription.style.display === "none" && account.style.display === "grid"){
-                account.style.display = "none"
-                subscription.style.display = 'block';
-                return subPageType = " Your Subscriptions";
             } else {
-                subscription.style.display = 'none';
-                return subPageType = "";
+                subscription.style.display = "none";
+                account.style.display = "block";
+                return subPageType = "Account Info";
             }
         });
+
+        userOrderBtn.addEventListener('click', () => {
+            if (orders.style.display === "none") {
+                account.style.display = "none";
+                subscription.style.display = "none";
+                payment.style.display = "none";
+                orders.style.display = 'block';
+                return subPageType = "Your Orders"
+            } else {
+                orders.style.display = "none";
+                account.style.display = "block";
+                return subPageType = "Account Info";
+            }
+        });
+
+        paymentBtn.addEventListener('click', () => {
+            if (payment.style.display === "none") {
+                account.style.display = "none";
+                subscription.style.display = "none";
+                orders.style.display = "none";
+                payment.style.display = 'block';
+                return subPageType = "Payment"
+            } else {
+                payment.style.display = "none";
+                account.style.display = "block";
+                return subPageType = "Account Info";
+            }
+        });
+
  
     });
 
@@ -62,7 +96,10 @@
     <div>
         <div class="container">
             <div class="grid">
-                <h1> Welcome {username}</h1>
+                <div class="profileInfo">  
+                    <img class="profilePicture" src={profilePicture} alt="User Profile Picture">
+                    <h1> Welcome {username}</h1>
+                </div>
                 <h1 class="pageType"> {subPageType} </h1>
             </div>
             <div class="grid">
@@ -71,16 +108,15 @@
                         <ul class="columnFlex">
                             <button class="accountBtn" id="accountBtn" > Account Info</button>
                             <button class="subscriptionBtn" id="subscriptionBtn"> Subscriptions </button>
-                            <button class="purchasedContentBtn" id="purchasesContentBtn" > Purchased Content </button>
+                            <button class="userOrdertBtn" id="userOrderBtn" > My Orders </button>
                             <button class="paymentBtn" id="paymentBtn" > Payment </button>
-                            <button class="settingsBtn" id="settingsBtn" > Settings </button>
-                            <button class="suportBtn" id="supportBtn"> Support </button>
                         </ul>
                  </div>
                  <!-- Account Section-->
                  <div class="account" id="account">
                     <div> 
                         <h1 class="headings" > Username: </h1>
+                        <h4> {username}</h4>
                         <input class="input" type="text" aria-label="Username" placeholder="{username}"  /> 
                         <button> Update </button>
                     </div>
@@ -115,7 +151,40 @@
                         <td> {userOptions}</td>
                     </tr>
                    </table>
-                    
+                 </div>
+                 <div class="orders" id="orders"> 
+                        <table> 
+                            <tr>
+                                <th> Product </th>
+                                <th> Date </th>
+                                <th> Price </th>
+                                <th> Auto Renewal </th>
+                                <th> Link </th>
+                            </tr>
+                            <tr>
+                                <td> Buncensored Membership </td>
+                                
+                                <td> 11/28/2023</td>
+                                <td> 19.95/month </td>
+                                <td> Yes </td>
+                                <td> <a href="/"> Access Video</a></td>
+                            </tr>
+                        </table>
+                 </div>
+                 <div class="payment" id="payment">
+                        <h1> Default Payment Method </h1>
+                        <div class="grid">
+                            <div class="flexColumn"> 
+                                <h3> Card ending in 1111 </h3>
+                                <div class="flex">
+                                    <button> Change Payment Method </button>
+                                    <button> Update Payment Method </button>
+                                </div>
+                            
+                            </div>
+                      
+
+                        </div>
                  </div>
 
           </div>
@@ -142,6 +211,22 @@
 
     }
 
+    .profilePicture {
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+    }
+
+    .profileInfo {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+
+
     ul {
         list-style:none;
 
@@ -153,7 +238,7 @@
     }
 
     .account {
-        display: grid;
+        display: block;
         grid-template-columns: 1fr 1fr;
         padding-left: 20px;
 
@@ -187,6 +272,7 @@
     .columnFlex {
         display: flex;
         flex-direction: column;
+        
     }
 
     .flex {
@@ -226,6 +312,14 @@ button {
 
 button:hover {
     box-shadow: 0px 0px 10px 2px;
+}
+
+.orders {
+    display: none;
+}
+
+.payment {
+    display: none;
 }
 
 </style>
