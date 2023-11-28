@@ -1,0 +1,18 @@
+@font-face {
+    font-family: 'Lora';
+    font-style: normal;
+    font-weight: 500;
+    src: url('/fonts/lora-v20-latin-500.eot'); /* IE9 Compat Modes */
+    src: local(''), url('/fonts/lora-v20-latin-500.eot?#iefix') format('embedded-opentype'),
+        /* IE6-IE8 */ url('/fonts/lora-v20-latin-500.woff2') format('woff2'),
+        /* Super Modern Browsers */ url('/fonts/lora-v20-latin-500.woff') format('woff'),
+        /* Modern Browsers */ url('/fonts/lora-v20-latin-500.ttf') format('truetype'),
+        /* Safari, Android, iOS */ url('/fonts/lora-v20-latin-500.svg#Lora') format('svg'); /* Legacy iOS */
+}
+
+@font-face {
+    font-family: 'Kanit';
+    font-style: normal;
+    font-weight: 500;
+    src: url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Kanit:wght@500&family=Lato:wght@900&family=Red+Hat+Display:wght@500;700;900&family=Ubuntu:wght@500&display=swap');
+}
