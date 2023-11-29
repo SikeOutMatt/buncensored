@@ -10,10 +10,10 @@
 
 <main> 
     <div class="container"> 
-        <div class="grid background"> 
-            <div>
+        <div class="grid background columnFlex"> 
+            <div class="">
                 <div>
-                    <img class="hidden" src={banner}>
+                    <img class="hidden heroImage" src={banner} alt="hero image">
                 </div>
                 <div>
 
@@ -21,28 +21,26 @@
             </div>
             <div class="flex background">
                 <div class="loginOptions">
-                    <img src={Logo} width="350px" height="200px">
+                    <img src={Logo} width="350px" height="200px" alt="logo">
                     <button> Sign Up </button>
-                    <button> Login </button>
+                    <a href="/profile/profile"> <button class="loginBtn">Login </button></a>
                     <h1> Sign In With Your Favorite Apps</h1>
-                    <button> Sign in With Twitter </button>
+                    <button> Sign in With Twitter </button> 
                     <button> Sign in With Facebook </button>
                     <button> Sign in With Google </button>
                 </div>
-    
             </div>
         </div>
-
-
-
-
     </div>
 </main>
 
 <style>
 
+       
+
     main {
         margin: -10px;
+        background-color: #2a2a2a;
 
     }
 
@@ -52,20 +50,20 @@ h1 {
     font-weight: bolder;
 }
 
-.hidden {
+/* .hidden {
     overflow: hidden;
-}
+} */
 
 .container {
     width: 100vw;
     height: 100vh;
     margin: 0;
-    overflow: hidden;
+   /* overflow: hidden; */
     
 }
 
 button {
-    background-color: #00AEEF;;
+    background-color: #00AEEF;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -73,7 +71,6 @@ button {
     font-size: 15px;
     cursor: pointer;
     margin-right: 20px;
-
 }
 
 
@@ -89,7 +86,7 @@ button {
 }
 
 img {
-    overflow: hidden;
+    overflow: hidden; 
     margin: 0;
 }
    
@@ -99,14 +96,7 @@ img {
     align-items: center;
 }
 
-input {
-    margin: 20px;
-    border-radius: 5px;
-    padding: 5px;
-    border-style: none;
-    font-size: 15px;
-    background-color: #6a6a6a;
-}
+
 
 .loginOptions button {
     margin: 20px;
@@ -115,9 +105,19 @@ input {
     border-style: none;
     font-size: 15px;
     background-color: #00AEEF;
+    width: 50vw;
+    padding: 10px 20px;
+}
+
+.loginBtn {
+    margin: 20px;
+    border-radius: 20px;
+    padding: 5px;
+    border-style: none;
+    font-size: 15px;
+    background-color: #00AEEF;
     width: 200%;
     padding: 10px 20px;
-
 }
 
 .loginOptions {
@@ -128,7 +128,65 @@ input {
 
 }
 
-    
+@media (max-width: 1500px) {
+        .container {
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .columnFlex {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .heroImage {
+            width: 100vw;
+            height: 25vh;
+        }
+        .loginOptions button  {
+            padding-right: 10px;
+            padding-left: 10px;
+            width: 50vw;
+        }
+    }
+
+@media (max-width: 1000px) {
+        .container {
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .columnFlex {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .heroImage {
+            width: 100vw;
+            height: 25vh;
+        }
+
+        .loginOptions button  {
+            padding-right: 10px;
+            padding-left: 10px;
+            width: 50vw;
+        }
+    }
+
+@media (min-width: 1500px) {
+        .container {
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+        }
+    }
+
 
 </style>
 

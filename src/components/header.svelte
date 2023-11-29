@@ -1,43 +1,61 @@
 
 <script>
 import Logo from '../lib/assets/logo.webp';
-import accountIcon from '../lib/assets/user.png';
+import HamburgerIcon from '../lib/assets/hamburger.png'
+import { onMount } from 'svelte';
 
+
+
+onMount(() => {
+   let hamburgerMenu = document.getElementById('hamburgerMenu');
+    let sidebar = document.getElementById('sidebar');
+
+    hamburgerMenu.addEventListener('click', () => {
+        if (sidebar.style.display === "none") {
+            sidebar.style.display = "block";
+        } else {
+            sidebar.style.display = "none";
+        }
+    });
+    });
 
 </script>
 
 <main>
-    <div class="grid">
-        <div class="flex">
-            <h1> 
-               <a href="/"> <img class="logo" src={Logo} alt="Buncensored Logo" height="100px" width="200px"></a> 
-            </h1>
-        </div>
-       <div class="flex">
+
+ <div class="flex">
+    <div> 
+       <a href="/"><img class="logo" src={Logo} width="200" height="100" alt="Logo"></a> 
+    </div>
+    <div>
         <nav>
             <ul>
-                <li class="centerNav"> <a href="/"> Home </a> </li>
-                <li class="centerNav"> Messages </li>
-                <li class="centerNav"> Content </li>
+                <li> Home </li>
+                <li> Messages </li>
+                <li> Content </li>
+                <li> Account </li>
             </ul>
         </nav>
-        </div>
-        <div class="flex">
-            <div class="account">
-                <div class="flex"> 
-                   <a href="/account"> <img  src={accountIcon} height="30px" width="30px"> </a>
-                    <li><a href="/account"> Account </a> </li>
-                </div>
-
-
-
-                <ul>
-                    
-                </ul>
-            </div>
-       
-       </div>
+    <div> 
+        <img src={HamburgerIcon} id="hamburgerMenu" class="flex hamburgerMenu" alt="Hamburger Menu" width="50" height="50"> 
     </div>
+    <!-- Sidebar-->
+    <div class="sidebar" id="sidebar"> 
+        <nav class="sidebarMenu"> 
+            <ul class="flexColumn"> 
+                <li class="padding" > Home </li>
+                <li class="padding"> Messages </li>
+                <li class="padding"> Content </li>
+                <li class="padding"> <a href="/account"> Account </a> </li>
+            </ul>
+        </nav>
+
+
+     </div>
+    </div>
+
+
+      
 </main>
 
 
@@ -47,6 +65,10 @@ import accountIcon from '../lib/assets/user.png';
         padding: 0px;
     }
 
+    .padding {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
 
 ul {
     display: flex;
@@ -67,30 +89,54 @@ li {
     font-weight: 900;
 }
 
-.account {
-    border-radius: 5px;
-    padding: 5px;
-    font-family: 'Kanit', sans-serif;
-    font-weight: 900;
-    font-size: 20px;
-    display: flex;
-    justify-content: start;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr ;
-}
-
-.logo {
-    padding-left: 50px;
-
-}
 .flex {
     display: flex;
     justify-content: center;
     align-items: flex-end;
 }
 
+
+.hamburgerMenu {
+    display: none;
+}
+
+.sidebar {
+    display: none;
+}
+
+.flexColumn {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebarMenu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+@media (max-width:930px) {
+    .hamburgerMenu {
+        display: block;
+        padding-right: 50px;
+    }
+
+    nav {
+        display: none;
+    }
+
+    .logo {
+        padding-left: 25px;
+    }
+
+    .flex {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
 
 </style>
