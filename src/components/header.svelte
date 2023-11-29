@@ -2,6 +2,9 @@
 <script>
 import Logo from '../lib/assets/logo.webp';
 import HamburgerIcon from '../lib/assets/hamburger.png'
+import messageIcon from '../lib/assets/messages.png'
+import accountIcon from '../lib/assets/user.png'
+import videoIcon from '../lib/assets/video.png'
 import { onMount } from 'svelte';
 
 
@@ -31,9 +34,9 @@ onMount(() => {
         <nav>
             <ul>
                 <li> Home </li>
-                <li> Messages </li>
-                <li> Content </li>
-                <li> Account </li>
+                <li><a href="/"><img src={messageIcon} height="20px" width="20px" alt="Message Icon"> Messages</a></li>
+                <li> <a href="/"> <img src={videoIcon} height="20px" width="20px" alt="Video Icon" > Videos </a> </li>
+                <li> <a href="/account"><img src={accountIcon} height="20px" width="20px" alt="User Icon"> Acocunt </a> </li>
             </ul>
         </nav>
     <div> 
@@ -91,7 +94,7 @@ li {
 
 .flex {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: flex-end;
 }
 
@@ -114,6 +117,11 @@ li {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+a {
+    color: black;
+    text-decoration: none;
 }
 
 
