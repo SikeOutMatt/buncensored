@@ -36,6 +36,7 @@ onMount(() => {
                 <li> Home </li>
                 <li><a href="/"><img src={messageIcon} height="20px" width="20px" alt="Message Icon"> Messages</a></li>
                 <li> <a href="/"> <img src={videoIcon} height="20px" width="20px" alt="Video Icon" > Videos </a> </li>
+                <li> <a href="/profile/profile"> <img > Profile</a></li>
                 <li> <a href="/account"><img src={accountIcon} height="20px" width="20px" alt="User Icon"> Acocunt </a> </li>
             </ul>
         </nav>
