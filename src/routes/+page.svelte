@@ -35,6 +35,9 @@
 </main>
 
 <style>
+    * {
+        font-family: 'Kanit', sans-serif;
+    }
 
        
 
@@ -186,6 +189,12 @@ img {
             margin: 0;
         }
     }
+
+    @font-face {
+    font-family: 'Kanit', sans-serif;
+    src: url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap');
+
+}
 
 
 </style>

@@ -64,6 +64,11 @@ onMount(() => {
 
 
 <style>
+
+    * {
+        font-family: 'Kanit', sans-serif;
+    }
+    
     main {
         margin: 0px;
         padding: 0px;
@@ -127,7 +132,7 @@ a {
 
 
 
-@media (max-width:930px) {
+@media (max-width:1000px) {
     .hamburgerMenu {
         display: block;
         padding-right: 50px;
@@ -146,6 +151,12 @@ a {
         align-items: center;
         justify-content: space-between;
     }
+}
+
+@font-face {
+    font-family: 'Kanit', sans-serif;
+    src: url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap');
+
 }
 
 </style>

@@ -5,6 +5,8 @@
     import profileBanner from '../../../lib/assets/profilebanner.png'
     import videoThumbnail from '../../../lib/assets/videothumbnail.png'
     import postPicture from '../../../lib/assets/postpicture.webp'
+    import Sidebar from '../../../components/sidebar.svelte'
+    import verified from '../../../lib/assets/verified.png'
 
 
     import { onMount } from 'svelte';
@@ -19,16 +21,17 @@
     let content = document.getElementById("content");
     let activityFeed = document.getElementById("activityFeed");
     let activityFeedBtn = document.getElementById("activityFeedBtn");
-    let contentBtn = document.getElementById("contentBth");
+    let contentBtn = document.getElementById("contentBtn");
+    let postSubmitBtn = document.getElementById("postSubmitBtn");
+    let textArea = document.getElementById("textarea");
+    let newDiv;
 
 
 
     contentBtn.addEventListener("click", function() {
         activityFeed.style.display = "none";
         content.style.display = "block";
-        contentBtn.style.color = "blue";
-        contentBtn.style.fontWeight = "bolder";
-        contentBtn.style.textUnderlineOffset = "10px";
+        contentBtn.style.color = "red";
    
     })
 
@@ -37,6 +40,32 @@
         content.style.display = "none";
         activityFeedBtn.style.color = "blue";
     })
+
+
+    postSubmitBtn.addEventListener("click", function() {
+        postSubmit();
+    })
+
+    function addElement(tagName) {
+    const newElement = document.createElement(tagName);
+    return newElement;
+
+    }
+
+    function postSubmit() {
+
+        let postContent = textArea.value;
+        newDiv = addElement("div");
+        newDiv.textContent = postContent;
+        const parentElement = document.getElementById("activityFeed");
+        parentElement.classList.add("post");
+        parentElement.appendChild(newDiv);
+        textArea.value = "";
+
+
+
+
+    }
 })
 
 </script>
@@ -44,43 +73,61 @@
 
 <main>
     <Header />
+    
     <div class="container">
         <div class="background">
              <div class="profileHeader">
-            <img class="profileBanner relative" src={profileBanner} width="1200vh" height="200vh"> 
+            <img class="profileBanner relative" src={profileBanner} > 
              </div>
             <div class="profilePictureHeader">
-                 <div>
+                 <div class="flex belowBanner">
                       <img src={profilePicture} class="profilePicture">
                       <div class="flexColumn">
-                        <h1> MyUsername</h1>
-                        <h2> @MyUsername</h2>
+                        <div class="flexVerified">
+                            <h1> MyUsername</h1>
+                            <img class="verifiedBadge" src={verified} height="30px" width="30px"> 
+                        </div>
+                        <div class="flexBetween fullWidth">
+                            <div class="">
+                                <h4> @MyUsername</h4>
+                                <h5> Followers 1.98k</h5>
+                            </div>
+                            <div>
+                                <button class="followBtn"> Subscribe </button>
+                            </div>
+                        </div>
+                   
                       </div>
-                      <div>
-                        
-                      </div>
-                </div>
-                    <div class="userInfo">  
-               
-                      </div>
+                    </div>
                 </div>
         </div>
         <div>
             <ul class="">
                 <a class="activityFeedBtn" id="activityFeedBtn"> <li>Activity Feed</li></a>
-                <a id="contentBth"> <li class="contentBtn">Content</li> </a>  
+                <a id="contentBtn"> <li class="contentBtn">Content</li> </a>  
                 <li> Vault </li>
             </ul>
         </div>
-    
+
 
 <!-- Activity Feed Section -->
 
 
         <div class="activityFeed" id="activityFeed">
             <div class="createPost">
-                <div>
-
+                <div class="">
+                    <div>
+                        <textarea id="textarea" placeholder="Write your message here..."> </textarea>
+                    </div>
+                    <div class="flexBetween createPostFooter"> 
+                        <div>
+                            <img class="videoIcon" src={videoIcon} width="30px" height="30px" >
+                        </div>
+                        <div>
+                            <button id="postSubmitBtn" class="submitBtn"> Submit </button>
+                        </div>
+                    </div>
+                    
                 </div>
 
             </div>
@@ -102,6 +149,7 @@
 
             </div>
         </div>
+    </div>
 
 <!-- Exclusive Content-->
 
@@ -171,12 +219,17 @@
 <style> 
 /* Page Styles */
 
+    .fullWidth {
+        width: 100%;
+    }
+
     main {
         background-color: #f7f7f9;
     }
 
     *{
         margin: 0;
+        font-family: 'Kanit', sans-serif;
         }
 
     strong {
@@ -195,9 +248,12 @@
 
     .profilePictureHeader {
         display: flex;
-        flex-direction: column;
-        justify-content: center;
+        justify-content: start;
         align-items: center;
+        margin-top: 10px;
+        padding-bottom: 30px;
+        margin-left: 30px;
+
     }
 
     .background  {
@@ -214,12 +270,19 @@
         margin: 30px auto;
     }
 
+    .flex {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+    }
+
     .flexColumn
     {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
+        align-items: start;
+        padding-left: 20px;
     }
 
     .flexColumnStart {
@@ -229,16 +292,33 @@
         align-items: start;
     }
 
+    .flexBetween {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .followBtn {
+        background-color: #00AEEF;
+        border: none;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 10px;
+        font-weight: 600;
+    
+    }
+
 /* Profile Header Section */
 
     .profileHeader {
         display: flex;
-        justify-content: center;
 
     }
 
     .profileBanner {
         border-radius: 20px;
+        width: 100%;
+        height: 200px;
     }
 
     .profilePicture {
@@ -246,6 +326,24 @@
         width: 100px;
         height: 100px;
         padding-top: 10px;
+    }
+
+    .verifiedBadge {
+        padding-left: 10px;
+    }
+
+    .flexVerified {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .belowBanner {
+        width: 100%;
+    }
+
+    .videoIcon {
+        padding-left: 10px;
     }
 
 
@@ -285,6 +383,25 @@
     
     }
 
+    .createPost {
+        border-radius: 20px;
+        margin: auto;
+        width: 50vw;
+        background-color: white;
+
+    }
+
+    .createPostFooter {
+        background-color: #bdbec5;
+        margin-bottom: 20px;
+        border-radius: 0px 0px 20px 20px;
+    }
+
+    textarea {
+        resize: none;
+        border-radius: 20px 20px 0px 0px;
+    }
+
 
 /* Profile Content Section */
 
@@ -308,7 +425,7 @@
 
     .contentBtn {
         cursor: pointer;
-        color: #bdbec5;   
+        color: #bdbec5; 
      }
 
     .activityFeed {
@@ -323,10 +440,13 @@
         border: none;
         font-weight: 600;
         border-radius: 10px;
+        color: white;
     }
 
     .content {
         display: none;
+        width: 70vw;
+        margin: auto;
     }
 
 
@@ -420,6 +540,19 @@
         display: flex;
     }
 
+    .post {
+        width: 95vw;
+    }
+
+    .createPost {
+        width: 95vw;;
+    }
+
+    .container {
+        width: 100%;
+        margin: 0;
+    }
+
 }
 
 @media (max-width:630px) {
@@ -433,10 +566,27 @@
     .videoThumbnail {
         max-width: 60vw;
     }
+
+    .flex {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+  
+
+  
 }
+
 
 }
 
+
+@font-face {
+    font-family: 'Kanit', sans-serif;
+    src: url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap');
+
+}
 
 </style>
 
